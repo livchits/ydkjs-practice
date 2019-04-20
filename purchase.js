@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /*
     Write a program to calculate the total price of your phone purchase. You will keep purchasing phones (hint: loop!) until you run out of money in your bank account. You'll also buy accessories for each phone as long as your purchase total is below your mental spending threshold.
     After you've calculated your purchase total, add in the tax, then print out the calculated purchase total, properly formatted.
@@ -8,7 +9,7 @@
 */
 
 var bankAccountBalance = prompt("¿Cuánto dinero tiene en su cuenta?");
-const SPENDING_THRESHOLD = bankAccountBalance * 0.4; 
+const SPENDING_THRESHOLD = bankAccountBalance * 0.4;
 const TAX_RATE = 0.1;
 const PHONE_PRICE = 100;
 const ACCESSORY_PRICE = 10;
@@ -16,18 +17,21 @@ var total = 0;
 var phones = 0;
 var accessories = 0;
 
-const tax = (amount) => amount * TAX_RATE;
+const tax = amount => amount * TAX_RATE;
 
-const format = (amount) => "$" + amount.toFixed(2);
+const format = amount => "$" + amount.toFixed(2);
 
-while (bankAccountBalance > (PHONE_PRICE + tax(PHONE_PRICE)) && bankAccountBalance > SPENDING_THRESHOLD) {
-//Si en la cuenta hay más del valor de un teléfono con impuestos y más de lo que me puedo permitir gastar, se compra un teléfono.
+while (
+  bankAccountBalance > PHONE_PRICE + tax(PHONE_PRICE) &&
+  bankAccountBalance > SPENDING_THRESHOLD
+) {
+  //Si en la cuenta hay más del valor de un teléfono con impuestos y más de lo que me puedo permitir gastar, se compra un teléfono.
   total += PHONE_PRICE + tax(PHONE_PRICE);
   phones++;
-  if ((total + ACCESSORY_PRICE + tax(ACCESSORY_PRICE)) < SPENDING_THRESHOLD) {
-  //Si lo que me puedo permitir gastar es más que el total sumado a un accesorio y sus impuestos, se compra un accesorio.
+  if (total + ACCESSORY_PRICE + tax(ACCESSORY_PRICE) < SPENDING_THRESHOLD) {
+    //Si lo que me puedo permitir gastar es más que el total sumado a un accesorio y sus impuestos, se compra un accesorio.
     total += ACCESSORY_PRICE + tax(ACCESSORY_PRICE);
-    accessories++      
+    accessories++;
   }
   bankAccountBalance -= total;
 }
