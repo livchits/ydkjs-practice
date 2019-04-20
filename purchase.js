@@ -16,13 +16,9 @@ var total = 0;
 var phones = 0;
 var accessories = 0;
 
-function tax(amount) {
-  return amount * TAX_RATE;
-}
+const tax = (amount) => amount * TAX_RATE;
 
-function format(amount) {
-  return "$" + amount.toFixed(2);
-}
+const format = (amount) => "$" + amount.toFixed(2);
 
 while (bankAccountBalance > (PHONE_PRICE + tax(PHONE_PRICE)) && bankAccountBalance > SPENDING_THRESHOLD) {
 //Si en la cuenta hay más del valor de un teléfono con impuestos y más de lo que me puedo permitir gastar, se compra un teléfono.
